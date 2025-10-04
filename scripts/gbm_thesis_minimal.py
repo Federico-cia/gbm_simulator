@@ -1,12 +1,10 @@
-# Minimal GBM simulator (plain Python, no external libraries)
-# MU and SIGMA must be ANNUALIZED in decimal.
-# - MU: paste the value printed as mu_for_sim by scripts/estimate_mu_thesis.py
-# - SIGMA: paste the annualized volatility from scripts/estimate_sigma_thesis.py
+# Minimal GBM simulator (plain Python) + plot
+# MU and SIGMA are annualized (decimal). Replace them with values from your estimator scripts if desired.
 
 # --- inputs you can change ---
 NUM_DAYS = 252
-SIGMA = 0.8            # e.g., 0.67 if annualized from your sigma script
-MU = 0.15              # e.g., 0.23 (mu_for_sim from your mu script)
+SIGMA = 0.8
+MU = 0.15
 INITIAL_PRICE = 30000.0
 NUM_SIMULATIONS = 200
 SEED = 42
@@ -14,6 +12,7 @@ SEED = 42
 
 import math
 import random
+import matplotlib.pyplot as plt
 
 random.seed(SEED)
 dt = 1.0 / NUM_DAYS
@@ -34,7 +33,17 @@ for _ in range(NUM_SIMULATIONS):
         path.append(s)
     paths.append(path)
 
-# simple confirmation output
 print("simulated paths:", len(paths), "points per path:", len(paths[0]))
 print("final K:", K[-1])
 print("MU (annual):", MU, "SIGMA (annual):", SIGMA)
+
+# plot and save
+for p in paths:
+    plt.plot(t, p, linewidth=0.9)
+plt.plot(t, K, "k", linewidth=1.5)
+plt.xlabel("Days")
+plt.ylabel("Bitcoin Price")
+plt.title("Geometric Brownian Motion — Bitcoin (Python)")
+plt.tight_layout()
+plt.savefig("gbm_paths.png", dpi=150)
+print("Saved gbm_paths.png")
