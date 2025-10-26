@@ -1,4 +1,4 @@
-# Estimate μ from last 3 months of daily log-returns and compute the annualized value for your simulator
+# Estimate μ from last 3 months of daily log-returns and compute the annualized value for simulator
 
 import numpy as np
 import pandas as pd
@@ -10,7 +10,7 @@ data['Log_Ret'] = np.log(data['Close'] / data['Close'].shift(1)) * 100
 last_3_months = data.loc[data.index > (data.index[-1] - pd.DateOffset(months=3))]
 mu_daily = last_3_months['Log_Ret'].mean() / 100  # daily mean (decimal)
 
-# Keep these equal to your simulator settings
+# Keep these equal to simulator settings
 NUM_DAYS = 252
 SIGMA = 0.8
 
