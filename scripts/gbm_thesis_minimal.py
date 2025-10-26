@@ -1,5 +1,5 @@
-# Minimal GBM simulator (plain Python) + plot
-# MU and SIGMA are annualized (decimal). Replace them with values from your estimator scripts if desired.
+# Minimal GBM simulator + plot
+# MU and SIGMA are annualized (decimal). Replace them with values from estimator scripts.
 
 # --- inputs you can change ---
 NUM_DAYS = 252
