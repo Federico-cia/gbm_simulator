@@ -11,7 +11,7 @@ last_3_months = data.loc[data.index > (data.index[-1] - pd.DateOffset(months=3))
 mu_daily = last_3_months['Log_Ret'].mean() / 100  # daily mean (decimal)
 
 # Keep these equal to simulator settings
-NUM_DAYS = 252
+NUM_DAYS = 365
 SIGMA = 0.8
 
 mu_for_sim = mu_daily * NUM_DAYS + 0.5 * SIGMA * SIGMA  # annualized μ for GBM
