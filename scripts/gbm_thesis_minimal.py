@@ -3,7 +3,7 @@
 
 # --- inputs you can change ---
 NUM_DAYS = 365
-SIGMA = 0.8
+SIGMA = 0.47788079637560166
 MU = 0.15
 INITIAL_PRICE = 30000.0
 NUM_SIMULATIONS = 200
