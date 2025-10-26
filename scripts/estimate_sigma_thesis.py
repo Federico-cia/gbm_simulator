@@ -13,14 +13,17 @@ data['Log_Ret'] = np.log(data['Close'] / data['Close'].shift(1))
 data['Log_Ret'] = data['Log_Ret'] * 100
 
 # 3) Fit GARCH(1,1) on percent log-returns
-model = arch_model(data['Log_Ret'].dropna(), vol='Garch', p=1, q=1)
+model = arch_model(data['Log_Ret'].dropna(), vol='GARCH', p=1, q=1)
 model_fitted = model.fit()
 
 # 4) Forecast next 30 days of variance and convert to volatility
 forecast = model_fitted.forecast(horizon=30)
-volatility_forecast = np.sqrt(forecast.variance.values[0, :]) / 10
+volatility_forecast = np.sqrt(forecast.variance.values[0, :]) / 100
 
 # 5) Print daily forecast vector and its mean 
 print(volatility_forecast)
 volatility = np.mean(volatility_forecast)
 print(f"Volatilità media sui prossimi 30 giorni: {volatility}")
+
+sigma_annual = float(np.mean(volatility_forecast) * np.sqrt(365))  # annualized for dt=1/365
+print(sigma_annual)  # paste this into SIGMA in gbm_thesis_minimal.py
