@@ -2,7 +2,7 @@
 # MU and SIGMA are annualized (decimal). Replace them with values from estimator scripts.
 
 # --- inputs you can change ---
-NUM_DAYS = 252
+NUM_DAYS = 365
 SIGMA = 0.8
 MU = 0.15
 INITIAL_PRICE = 30000.0
